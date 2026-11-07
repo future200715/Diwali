@@ -563,6 +563,9 @@ $('shr2').onclick = async () => {
 
     LINK = url;
 
+$('shr2').onclick = async () => {
+    const url = LINK || location.href.split('#')[0];
+
     try {
         if (navigator.share) {
             await navigator.share({
@@ -571,7 +574,7 @@ $('shr2').onclick = async () => {
                 url
             });
         } else {
-            await navigator.clipboard.writeText(url);
+            await navigator.clipboard.writeText('— Bhavii ' + url);
             $('shr2').textContent = 'Link copied';
         }
     } catch (e) {}
