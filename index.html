@@ -553,8 +553,15 @@
                 setTimeout(shot, i * 150);
             }
         };
+
 $('shr2').onclick = async () => {
-    const url = LINK || location.href.split('#')[0];
+    const n = $('nm').value.trim(),
+        f = $('fr').value.trim(),
+        sl = s => s.replace(/[^A-Za-z0-9]+/g, '-').replace(/^-|-$/g, ''),
+        h = sl(n) + (f && sl(f) ? '-from-' + sl(f) : ''),
+        url = location.href.split('#')[0] + (sl(n) ? '#' + h : '');
+
+    LINK = url;
 
     try {
         if (navigator.share) {
@@ -564,11 +571,12 @@ $('shr2').onclick = async () => {
                 url
             });
         } else {
-            await navigator.clipboard.writeText('— Bhavii ' + url);
+            await navigator.clipboard.writeText(url);
             $('shr2').textContent = 'Link copied';
         }
     } catch (e) {}
 };
+
   
 
 
