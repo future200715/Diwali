@@ -94,10 +94,14 @@
             >
 
             <div class="row">
-                <button class="btn" id="mk">
-                    Make card + link
-                </button>
-            </div>
+    <button class="btn" id="mk">
+        Make card + link
+    </button>
+
+    <button class="btn" id="shr2">
+        Share
+    </button>
+</div>
         </div>
 
         <!-- Greeting Card -->
@@ -549,27 +553,24 @@
                 setTimeout(shot, i * 150);
             }
         };
+$('shr2').onclick = async () => {
+    const url = LINK || location.href.split('#')[0];
 
+    try {
+        if (navigator.share) {
+            await navigator.share({
+                title: 'जगमग दिवाली',
+                text: '— Bhavii',
+                url
+            });
+        } else {
+            await navigator.clipboard.writeText('— Bhavii ' + url);
+            $('shr2').textContent = 'Link copied';
+        }
+    } catch (e) {}
+};
   
-$('shr').onclick = async () => {
-    const n = $('nm').value.trim(),
-        text = '— Bhavii',
-        url = LINK || location.href.split('#')[0];
 
-
-            try {
-                if (navigator.share) {
-                    await navigator.share({
-                        title: 'जगमग दिवाली',
-                        text,
-                        url
-                    });
-                } else {
-                    await navigator.clipboard.writeText(text + ' ' + url);
-                    $('shr').textContent = 'Link copied';
-                }
-            } catch (e) {}
-        };
 
         setTimeout(() => $('s1').classList.add('open'), 1000);
     </script>
