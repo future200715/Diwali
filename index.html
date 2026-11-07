@@ -552,12 +552,12 @@
             }
         };
 
-        $('shr').onclick = async () => {
-            const n = $('nm').value.trim(),
-                text = (
-                    n ? n + ', ' : ''
-                ) + 'wishing you a जगमग Diwali! Light a diya and a rocket for you:',
-                url = LINK || location.href.split('#')[0];
+  
+$('shr').onclick = async () => {
+    const n = $('nm').value.trim(),
+        text = '— Bhavii',
+        url = LINK || location.href.split('#')[0];
+
 
             try {
                 if (navigator.share) {
